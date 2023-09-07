@@ -21,51 +21,51 @@ productsRouter.post("/", async (req, res) => {
     let {title, description, code, price, status, stock, category, thumbnails} = req.body;
 
     if (!title) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Title!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Title!"});
         return false;
     }
 
     if (!description) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Description!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Description!"});
         return false;
     }
 
     if (!code) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Code!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Code!"});
         return false;
     }
 
     if (!price) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Price!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Price!"});
         return false;
     }
 
     status = !status && true;
 
     if (!stock) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Stock!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Stock!"});
         return false;
     }
 
     if (!category) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Category!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Category!"});
         return false;
     }
 
     if (!thumbnails) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Thumbnails!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Thumbnails!"});
         return false;
     } else if ((!Array.isArray(thumbnails)) || (thumbnails.length == 0)) {
-        res.status(400).send({status:"error", message:"Error! Insert image in: Array Thumbnails!"});
+        res.status(400).send({status:"error", message:"Error! Debe ingresar al menos una imagen en el Array Thumbnails!"});
         return false;
     }
 
     const result = await PM.addProduct({title, description, code, price, status, stock, category, thumbnails}); 
 
     if (result) {
-        res.send({status:"ok", message:"Product added succesfully!"});
+        res.send({status:"ok", message:"El Producto se agregó correctamente!"});
     } else {
-        res.status(500).send({status:"error", message:"Error! Product adding failed!"});
+        res.status(500).send({status:"error", message:"Error! No se pudo agregar el Producto!"});
     }
 });
 
@@ -74,51 +74,51 @@ productsRouter.put("/:pid", async (req, res) => {
     let {title, description, code, price, status, stock, category, thumbnails} = req.body;
 
     if (!title) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Title!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Title!"});
         return false;
     }
 
     if (!description) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Description!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Description!"});
         return false;
     }
 
     if (!code) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Code!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Code!"});
         return false;
     }
 
     if (!price) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Price!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Price!"});
         return false;
     }
 
     status = !status && true;
 
     if (!stock) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Stock!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Stock!"});
         return false;
     }
 
     if (!category) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Category!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Category!"});
         return false;
     }
 
     if (!thumbnails) {
-        res.status(400).send({status:"error", message:"Error! Complete field: Thumbnails!"});
+        res.status(400).send({status:"error", message:"Error! No se cargó el campo Thumbnails!"});
         return false;
     } else if ((!Array.isArray(thumbnails)) || (thumbnails.length == 0)) {
-        res.status(400).send({status:"error", message:"Error! Insert image in: Array Thumbnails!"});
+        res.status(400).send({status:"error", message:"Error! Debe ingresar al menos una imagen en el Array Thumbnails!"});
         return false;
     }
 
     const result = await PM.updateProduct(pid, {title, description, code, price, status, stock, category, thumbnails});
 
     if (result) {
-        res.send({status:"ok", message:"Product updated!"});
+        res.send({status:"ok", message:"El Producto se actualizó correctamente!"});
     } else {
-        res.status(500).send({status:"error", message:"Error! Product update failed!"});
+        res.status(500).send({status:"error", message:"Error! No se pudo actualizar el Producto!"});
     }
 });
 
@@ -127,9 +127,9 @@ productsRouter.delete("/:pid", async (req, res) => {
     const result = await PM.deleteProduct(pid)
 
     if (result) {
-        res.send({status:"ok", message:"Product deleted!"});
+        res.send({status:"ok", message:"El Producto se eliminó correctamente!"});
     } else {
-        res.status(500).send({status:"error", message:"Error! Product deletion failed!"});
+        res.status(500).send({status:"error", message:"Error! No se pudo eliminar el Producto!"});
     }
 });
 
