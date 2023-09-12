@@ -9,10 +9,30 @@ import ProductManager from "./dao/ProductManager.js";
 import ChatManager from "./dao/ChatManager.js";
 import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
+import sessionsRouter from "./routes/sessions.routes.js";
 import viewsRouter from "./routes/views.routes.js";
+import session from "express-session";
+import MongoStore from "connect-mongo";
+import passport from "passport";
+import initializePassport from "./config/passport.config.js";
 
 const app = express();
 const puerto = 8080;
+
+app.use(session({
+    store:MongoStore.create({
+        mongoUrl:"mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority",
+        mongoOptions:{useNewUrlParser:true, useUnifiedTopology:true},
+        ttl:10000
+    }),
+    secret:"S3cr3t0",
+    resave:false,
+    saveUninitialized:false
+}));
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
 const httpServer = app.listen(puerto, () => {
     console.log("Servidor Activo en el puerto: " + puerto);
 });
@@ -30,6 +50,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 app.use("/api/products/", productsRouter);
 app.use("/api/carts/", cartsRouter);
+app.use("/api/sessions/", sessionsRouter);
 app.use("/", viewsRouter);
 
 mongoose.connect("mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority")

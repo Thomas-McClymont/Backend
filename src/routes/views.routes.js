@@ -1,6 +1,6 @@
 import express from "express";
 import ProductManager from "../dao/ProductManager.js";
-import CartManager from "../dao/CartManager.js";
+import CartManager from "../dao/ProductManager.js";
 
 const router = express.Router();
 const PM = new ProductManager();
@@ -23,6 +23,12 @@ router.get("/products/:pid", async (req, res) => {
     res.render("product", {product});
 });
 
+router.get("/cart", async (req, res) => {
+    const cid = req.params.cid;
+    const cart = await PM.getCart(cid);
+    res.render("products", {products});
+});
+
 router.get("/realtimeproducts", (req, res) => {
     res.render("realTimeProducts");
 });
@@ -31,15 +37,28 @@ router.get("/chat", (req, res) => {
     res.render("chat");
 });
 
-router.get("/cart/:cid", async (req, res) => {
-    const cid = req.params.cid;
-    const cart = await CM.getCart(cid);
+router.get("/login", async (req, res) => {
+    res.render("login");
+});
 
-    if (cart) {
-        res.render("cart", {products:cart.products});
-    } else {
-        res.status(400).send({status:"error", message:"Error! No se encuentra el ID de Carrito!"});
-    }
+router.get("/register", async (req, res) => {
+    res.render("register");
+});
+
+router.get("/profile", async (req, res) => {
+    res.render("profile");
+});
+
+router.get("/restore", async (req, res) => {
+    res.render("restore");
+});
+
+router.get("/faillogin", async (req, res) => {
+    res.send({status:"error", message:"Login inválido!"});
+});
+
+router.get("/failregister", async (req, res) => {
+    res.send({status:"Error", message:"Error! No se pudo registar el Usuario!"});
 });
 
 export default router;

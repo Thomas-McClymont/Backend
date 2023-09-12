@@ -21,10 +21,16 @@
                 <div class="col-md-5 d-flex align-items-center justify-content-end">
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/">Home</a>
+                            <a class="nav-link text-dark" href="/login">Login</a>
                         </li>
+                        {{#if session.session.loggedIn}}
+                            <a class="nav-link text-dark" href="/logout">Logout</a>
+                        {{/if}}
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/realtimeproducts">Real Time Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Cart</a>
                         </li>
                     </ul>
                 </div>
