@@ -23,7 +23,7 @@ app.use(session({
     store:MongoStore.create({
         mongoUrl:"mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority",
         mongoOptions:{useNewUrlParser:true, useUnifiedTopology:true},
-        ttl:10000
+        ttl:30
     }),
     secret:"S3cr3t0",
     resave:false,
