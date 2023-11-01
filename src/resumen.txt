@@ -1,0 +1,16 @@
+Responsabilidades
+Cada archivo debe cumplir una funcion especifica por si pasa algun error o se quiere
+modificar algo, quede claro donde hay que hacerlos.
+Capa de soporte: capa de presentacion, capa de dominio/negocio, capa de acceso a datos
+
+Modelo MVC (modelo vista controlador). 3 capas base:
+- capa de modelo o persistencia: CRUD
+- capa de controlador o negocio: se encarga de que la operacion este finalizada. No 
+puede acceder ni modificar los datos, lo hara a traves de la capa modelo.
+- capa de vista o renderizacion: toma datos para renderizarlos. Puede acceder a
+persistencia sin pasar por negocio, si es que tiene como fin unico mostrar informacion.
+Capas adicionales para node js:
+Capa de routing: redirecciona hacia los puntos especificos de nuestra API
+Capa de servicio: Es una capa intermedia entre el controlador y la persistencia
+que sirve como tunel de conexion para que el controlador pueda acceder
+de manera mas homologada a persistencia.  
