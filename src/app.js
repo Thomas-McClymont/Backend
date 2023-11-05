@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(addLogger);
 
-
 //Declare routers:
 app.use("/api/performance", performanceRouter);
 app.use("/api/session", sessionRouter);
@@ -37,16 +36,3 @@ const mongoInstance = async () => {
     }
 };
 mongoInstance();
-
-// app.use(session({
-//     store:MongoStore.create({
-//         mongoUrl:"mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority",
-//         mongoOptions:{useNewUrlParser:true, useUnifiedTopology:true},
-//         ttl:30
-//     }),
-//     secret:"S3cr3t0",
-//     resave:false,
-//     saveUninitialized:false
-// }));
-
-//mongoose.connect("mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority")
