@@ -1,82 +1,52 @@
-import express from "express";
-import __dirname from "./utils.js";
-import expressHandlebars from "express-handlebars";
-import Handlebars from "handlebars";
-import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access'
-import { Server } from "socket.io";
-import mongoose from "mongoose";
-import ProductManager from "./dao/ProductManager.js";
-import ChatManager from "./dao/ChatManager.js";
-import productsRouter from "./routes/products.router.js";
-import cartsRouter from "./routes/carts.router.js";
-import sessionsRouter from "./routes/sessions.routes.js";
-import viewsRouter from "./routes/views.routes.js";
-import session from "express-session";
-import MongoStore from "connect-mongo";
-import passport from "passport";
-import initializePassport from "./config/passport.config.js";
+import express from 'express';
+import config from './config/config.js';
+import MongoSingleton from './config/mongodb-singleton.js';
+import performanceRouter from './routers/performance-test.router.js';
+import sessionRouter from './routers/sessions.router.js'
+import userRouter from './routers/users.router.js';
+import { addLogger } from './config/logger.js';
 
 const app = express();
-const puerto = 8080;
 
-app.use(session({
-    store:MongoStore.create({
-        mongoUrl:"mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority",
-        mongoOptions:{useNewUrlParser:true, useUnifiedTopology:true},
-        ttl:30
-    }),
-    secret:"S3cr3t0",
-    resave:false,
-    saveUninitialized:false
-}));
-initializePassport();
-app.use(passport.initialize());
-app.use(passport.session());
-
-const httpServer = app.listen(puerto, () => {
-    console.log("Servidor Activo en el puerto: " + puerto);
-});
-const socketServer = new Server(httpServer);
-const PM = new ProductManager();
-const CM = new ChatManager();
-
-app.set("views", __dirname + "/views");
-app.engine('handlebars', expressHandlebars.engine({
-    handlebars: allowInsecurePrototypeAccess(Handlebars)
-}));
-app.set("view engine", "handlebars");
+//JSON settings:
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(__dirname));
-app.use("/api/products/", productsRouter);
-app.use("/api/carts/", cartsRouter);
-app.use("/api/sessions/", sessionsRouter);
-app.use("/", viewsRouter);
+app.use(addLogger);
 
-mongoose.connect("mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority")
 
-socketServer.on("connection", (socket) => {
-    console.log("Nueva Conexión!");
+//Declare routers:
+app.use("/api/performance", performanceRouter);
+app.use("/api/session", sessionRouter);
+app.use("/api/user", userRouter);
 
-    const products = PM.getProducts();
-    socket.emit("realTimeProducts", products);
-
-    socket.on("nuevoProducto", (data) => {
-        const product = {title:data.title, description:"", code:"", price:data.price, status:"", stock:10, category:"", thumbnails:data.thumbnails};
-        PM.addProduct(product);
-        const products = PM.getProducts();
-        socket.emit("realTimeProducts", products);
-    });
-
-    socket.on("eliminarProducto", (data) => {
-        PM.deleteProduct(parseInt(data));
-        const products = PM.getProducts();
-        socket.emit("realTimeProducts", products);
-    });
-
-    socket.on("newMessage", async (data) => {
-        CM.createMessage(data);
-        const messages = await CM.getMessages();
-        socket.emit("messages", messages);
-    });
+app.get("/logger", (req, res)=>{
+    req.logger.warning("Prueba de log level warning!");
+    res.send("Prueba de logger!");
 });
+
+const SERVER_PORT = config.port;
+app.listen(SERVER_PORT, () => {
+    console.log("Servidor escuchando por el puerto: " + SERVER_PORT);
+});
+
+const mongoInstance = async () => {
+    try {
+        await MongoSingleton.getInstance();
+    } catch (error) {
+        console.error(error);
+    }
+};
+mongoInstance();
+
+// app.use(session({
+//     store:MongoStore.create({
+//         mongoUrl:"mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority",
+//         mongoOptions:{useNewUrlParser:true, useUnifiedTopology:true},
+//         ttl:30
+//     }),
+//     secret:"S3cr3t0",
+//     resave:false,
+//     saveUninitialized:false
+// }));
+
+//mongoose.connect("mongodb+srv://Cluster59576:Coderhouse2023@cluster59576.pjeqams.mongodb.net/ecommerce?retryWrites=true&w=majority")
