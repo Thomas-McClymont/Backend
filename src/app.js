@@ -19,8 +19,9 @@ app.use("/api/session", sessionRouter);
 app.use("/api/user", userRouter);
 
 app.get("/logger", (req, res)=>{
-    req.logger.warning("Prueba de log level warning!");
-    res.send("Prueba de logger!");
+    //warning?
+    req.logger.warn("Log de alerta!");
+    res.send("Prueba de logger");
 });
 
 const SERVER_PORT = config.port;
