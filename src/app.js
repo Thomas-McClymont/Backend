@@ -20,7 +20,7 @@ app.use("/api/user", userRouter);
 
 app.get("/logger", (req, res)=>{
     //warning?
-    req.logger.warn("Log de alerta!");
+    req.logger.warning("Log level warning");
     res.send("Prueba de logger");
 });
 
