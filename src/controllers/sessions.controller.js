@@ -7,14 +7,17 @@ export const loginUser = async (req, res) => {
     const {email, password} = req.body;
     try {
         const user = await userServiceDao.findByUsername(email);
-        console.log("Usuario encontrado para login:");
-        console.log(user);
+        //console.log("Usuario encontrado para login:");
+        req.logger.info("User found");
+        req.logger.info(user);
         if (!user) {
-            console.warn("User doesn't exists with username: " + email);
+            //console.warn("User doesn't exists with username: " + email);
+            req.logger.warning("User doesnt exist");
             return res.status(204).send({error: "Not found", message: "Usuario no encontrado con username: " + email});
         }
         if (!isValidPassword(user, password)) {
-            console.warn("Invalid credentials for user: " + email);
+            //console.warn("Invalid credentials for user: " + email);
+            req.logger.warning("Invalid credentials");
             return res.status(401).send({status:"error",error:"El usuario y la contraseña no coinciden!"});
         }
         const tokenUser= {
@@ -32,7 +35,7 @@ export const loginUser = async (req, res) => {
         });*/
         res.send({message: "Login successful!", payload: tokenUser});
     } catch (error) {
-        console.error(error);
+        req.logger.error("Log error");
         return res.status(500).send({status:"error",error:"Error interno de la applicacion."});
     }
 };

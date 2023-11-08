@@ -33,7 +33,8 @@ const mongoInstance = async () => {
     try {
         await MongoSingleton.getInstance();
     } catch (error) {
-        console.error(error);
+        req.logger.error("Log error");
     }
 };
 mongoInstance();
+//req.logger.info(`${req.method} en ${req.url}: fecha y hora: ${new Date().toLocaleDateString()}`);
