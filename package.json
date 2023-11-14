@@ -11,12 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@faker-js/faker": "^8.2.0",
+    "@faker-js/faker": "github:faker-js/faker",
     "artillery-plugin-metrics-by-endpoint": "^1.2.0",
     "bcrypt": "^5.1.1",
     "commander": "^11.1.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-compression": "^1.0.2",
     "mongoose": "^7.4.5",
     "nodemon": "^3.0.1",
     "winston": "^3.11.0"

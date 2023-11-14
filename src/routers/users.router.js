@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { fakeUser } from "../controllers/users.controller.js";
+import {getUsers, saveUser, getUserById} from '../controllers/users.controller.js';
+import errorHandler from '../services/errors/middlewares/index.js';
 
 const router = Router();
 
-router.get("/test", fakeUser);
+router.get("/", getUsers);
+router.post("/", saveUser);
+router.get("/:uid", getUserById);
+router.use(errorHandler);
 
 export default router;
