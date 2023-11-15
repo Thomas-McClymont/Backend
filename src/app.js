@@ -1,7 +1,6 @@
 import express from 'express';
 import config from './config/config.js';
 import compressionRouter from './routers/compression.router.js'
-import usersRouter from './routers/users.router.js'
 import productsRouter from './routers/products.router.js'
 import compression from 'express-compression';
 
@@ -17,7 +16,6 @@ app.use(compression({
 
 //Declare routers:
 app.use("/compression", compressionRouter);
-app.use("/api/users", usersRouter);
 app.use("/api/products", productsRouter);
 
 const SERVER_PORT = config.port;
