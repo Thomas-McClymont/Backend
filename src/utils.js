@@ -6,11 +6,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 //Idioma de los datos
-faker.locale = 'es';
+//faker.locale = 'es';
 
 //Generar producto
 export const generateProduct = () => {
     for (let i = 0; i < 100; i++) {
+        let products = [];
         products.push(generateProduct());
     }
     return {
