@@ -7,7 +7,7 @@ const router = Router();
 
 //
 router.get("/", getUsers);
-router.post("/", saveUser);
+router.post("/", saveProduct);
 //router.get("/", getProducts);
 router.use(errorHandler);
 
