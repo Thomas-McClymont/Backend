@@ -33,11 +33,11 @@ export const saveProduct = (req, res) => {
     const productDto = {
         product_name
     }
-    if (product.length === 0) {
+    if (products.length === 0) {
         productDto.id = 1;
     } else {
-        productDto.id = product[product.length-1].id + 1;
+        productDto.id = products[products.length-1].id + 1;
     }
-    product.push(productDto);
+    products.push(productDto);
     res.status(201).send({status: "success", payload: productDto});
 }

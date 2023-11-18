@@ -19,6 +19,7 @@ export const generateUser = () => {
 export const generateProduct = () => {
     return {
         title: faker.commerce.productName(),
+        id: faker.database.mongodbObjectId()
         /*price: faker.commerce.price(),
         stock: faker.random.numeric(1),
         id: faker.database.mongodbObjectId(),
