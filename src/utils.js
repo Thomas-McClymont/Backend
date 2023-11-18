@@ -8,46 +8,21 @@ const __dirname = dirname(__filename);
 //Idioma de los datos
 //faker.locale = 'es';
 
-//Generar producto
-/*export const generateProduct = () => {
+export const generateUser = () => {
     let products = [];
     for (let i = 0; i < 100; i++) {
         products.push(generateProduct());
     }
-    return {
-        title: faker.commerce.productName(),
-        price: faker.commerce.price(),
-        stock: faker.random.numeric(1),
-        id: faker.database.mongodbObjectId(),
-        image: faker.image.image()
-    }
-};*/
-
-export const generateUser = () => {
-    let numOfProducts = parseInt(faker.random.numeric(1, {bannedDigits:['0']}));
-    let products = [];
-    for (let i = 0; i < numOfProducts; i++) {
-        products.push(generateProduct());
-    }
-    return {
-        name: faker.name.firstName(),
-        last_name: faker.name.lastName(),
-        sex: faker.name.sex(),
-        birthDate: faker.date.birthdate(),
-        products,
-        image: faker.internet.avatar(),
-        id: faker.database.mongodbObjectId(),
-        email: faker.internet.email()
-    };
+    return products;
 };
 
 export const generateProduct = () => {
     return {
         title: faker.commerce.productName(),
-        price: faker.commerce.price(),
+        /*price: faker.commerce.price(),
         stock: faker.random.numeric(1),
         id: faker.database.mongodbObjectId(),
-        image: faker.image.image()
+        image: faker.image.image()*/
     }
 };
 
