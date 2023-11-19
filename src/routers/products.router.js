@@ -1,6 +1,6 @@
-import { Router } from "express";
+/*import { Router } from "express";
 //import { getProducts } from '../controllers/products.controllers.js';
-import errorHandler from '../services/errors/middlewares/index.js';
+//import errorHandler from '../services/errors/middlewares/index.js';
 //
 import {getUsers, saveProduct} from '../controllers/products.controllers.js';
 const router = Router();
@@ -11,4 +11,4 @@ router.post("/", saveProduct);
 //router.get("/", getProducts);
 router.use(errorHandler);
 
-export default router;
+export default router;*/

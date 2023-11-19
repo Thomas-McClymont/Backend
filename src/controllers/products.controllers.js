@@ -1,7 +1,7 @@
-import CustomError from "../services/errors/CustomError.js";
-import EErrors from "../services/errors/errors-enum.js";
-import { generateProductErrorInfo } from "../services/errors/messages/product-creation-error.message.js";
-
+//import CustomError from "../services/errors/CustomError.js";
+//import EErrors from "../services/errors/errors-enum.js";
+//import { generateProductErrorInfo } from "../services/errors/messages/product-creation-error.message.js";
+/*
 import generateProduct from '../utils.js';
 import {generateUser} from '../utils.js'
 
@@ -29,7 +29,7 @@ export const getUsers = async (req, res) => {
         res.status(500).send({error:  error, message: "No se pudo obtener los productos."});
     }
 }*/
-
+/*
 export const saveProduct = (req, res) => {
     //try {
         console.log(req.body);
@@ -54,4 +54,4 @@ export const saveProduct = (req, res) => {
         }
         product.push(productDto);
         res.status(201).send({status: "success", payload: productDto});
-}
+}*/
