@@ -1,17 +1,11 @@
 import Users from "../dao/users.dao.js";
+import Product from "../dao/products.dao.js";
+import Cart from "../dao/cart.dao.js";
 
 import UserRepository from "../repository/userRepository.js";
+import ProductRepository from "../repository/productRepository.js";
+import CartRepository from "../repository/cartRepository.js";
 
 export const usersService = new UserRepository(new Users());
-
-import Users from "../dao/Users.dao.js";
-import Pet from "../dao/Pets.dao.js";
-import Adoption from "../dao/Adoption.js";
-
-import UserRepository from "../repository/UserRepository.js";
-import PetRepository from "../repository/PetRepository.js";
-import AdoptionRepository from "../repository/AdoptionRepository.js";
-
-export const usersService = new UserRepository(new Users());
-export const petsService = new PetRepository(new Pet());
-export const adoptionsService = new AdoptionRepository(new Adoption());
+export const productsService = new ProductRepository(new Product());
+export const cartsService = new CartRepository(new Cart());

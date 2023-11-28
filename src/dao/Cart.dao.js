@@ -1,24 +1,19 @@
-import adoptionModel from "./models/Adoption.js";
+import cartModel from "./models/Cart.js";
 
-export default class Adoption {
-
+export default class Cart {
     get = (params) =>{
-        return adoptionModel.find(params);
+        return cartModel.find(params);
     }
-
     getBy = (params) =>{
-        return adoptionModel.findOne(params);
+        return cartModel.findOne(params);
     }
-
     save = (doc) =>{
-        return adoptionModel.create(doc);
+        return cartModel.create(doc);
     }
-
     update = (id,doc) =>{
-        return adoptionModel.findByIdAndUpdate(id,{$set:doc})
+        return cartModel.findByIdAndUpdate(id,{$set:doc})
     }
-    
     delete = (id) =>{
-        return adoptionModel.findByIdAndDelete(id);
+        return cartModel.findByIdAndDelete(id);
     }
 }

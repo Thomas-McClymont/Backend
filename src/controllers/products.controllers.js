@@ -1,4 +1,4 @@
-import ProductDTO from "../dto/Product.dto.js";
+import ProductDTO from "../dto/product.dto.js";
 import { productsService } from "../services/index.js"
 import __dirname from "../utils/index.js";
 

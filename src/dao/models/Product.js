@@ -7,12 +7,11 @@ const schema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    specie:{
-        type:String,
-        required:true
+    price:{
+        type:Number,
+        required:true,
     },
-    birthDate:Date,
-    adopted:{
+    added:{
         type:Boolean,
         default:false
     },

@@ -2,9 +2,8 @@ export default class ProductDTO {
     static getProductInputFrom = (product) =>{
         return {
             name:product.name||'',
-
-            image: product.image||'',
-
+            price:product.price||'',
+            image: product.image||''
         }
     }
 }
