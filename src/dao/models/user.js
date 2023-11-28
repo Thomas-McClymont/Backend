@@ -24,12 +24,12 @@ const schema = new mongoose.Schema({
         type:String,
         default:'user'
     },
-    pets:{
+    products:{
         type:[
             {
                 _id:{
                     type:mongoose.SchemaTypes.ObjectId,
-                    ref:'Pets'
+                    ref:'Products'
                 }
             }
         ],

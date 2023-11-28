@@ -4,8 +4,9 @@ import cookieParser from 'cookie-parser';
 
 import config from './config/config.js';
 
-//import productsRouter from './routers/products.router.js'
-import usersRouter from './routers/users.router.js';
+import usersRouter from './routes/users.router.js';
+import productsRouter from './routes/products.router.js';
+import cartsRouter from './routes/carts.router.js';
 
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUIExpress from 'swagger-ui-express';
@@ -17,7 +18,7 @@ const swaggerOptions = {
     definition: {
         openapi: "3.0.1",
         info: {
-            title: "Documentacion API Adoptme",
+            title: "Documentacion API NombreProyect",
             description: "Documentacion para uso de swagger"
         }
     },
@@ -28,15 +29,12 @@ const specs = swaggerJSDoc(swaggerOptions);
 //Declare swagger api endpoint 
 app.use('/apidocs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs));
 
-//JSON settings:
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.urlencoded({extended:true}));
-
-//Declare routers:
 app.use('/api/users',usersRouter);
-//app.use("/api/products", productsRouter);
+app.use('/api/products',productsRouter);
+app.use('/api/carts',cartsRouter);
 
 const SERVER_PORT = config.port;
 app.listen(SERVER_PORT, () => {
