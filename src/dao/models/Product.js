@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const collection = 'Products';
 
 const schema = new mongoose.Schema({
-    name:{
+    product_name:{
         type:String,
         required:true,
     },
@@ -11,13 +11,25 @@ const schema = new mongoose.Schema({
         type:Number,
         required:true,
     },
+    category:{
+        type:String,
+        required:true,
+    },
+    subcategory:{
+        type:String,
+        required:false,
+    },
     added:{
         type:Boolean,
         default:false
     },
-    owner:{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:'Users'
+    color:{
+        type:String,
+        required:false,
+    },
+    size:{
+        type:Number,
+        required:true,
     },
     image:String
 })

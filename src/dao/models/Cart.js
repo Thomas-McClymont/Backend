@@ -3,13 +3,18 @@ import mongoose from "mongoose";
 const collection = "Carts";
 
 const schema = new mongoose.Schema({
-    owner:{
+    // owner:{
+    //     type:mongoose.SchemaTypes.ObjectId,
+    //     ref:'Users'
+    // },
+    products:{
         type:mongoose.SchemaTypes.ObjectId,
-        ref:'Users'
+        ref:'Products',
     },
-    product:{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:'Products'
+    total:{
+        type:Number,
+        required:true,
+        default:0,
     }
 })
 

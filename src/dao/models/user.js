@@ -24,17 +24,17 @@ const schema = new mongoose.Schema({
         type:String,
         default:'user'
     },
-    products:{
-        type:[
-            {
-                _id:{
-                    type:mongoose.SchemaTypes.ObjectId,
-                    ref:'Products'
-                }
-            }
-        ],
-        default:[]
-    }
+    // products:{
+    //     type:[
+    //         {
+    //             _id:{
+    //                 type:mongoose.SchemaTypes.ObjectId,
+    //                 ref:'Products'
+    //             }
+    //         }
+    //     ],
+    //     default:[]
+    // }
 })
 
 const userModel = mongoose.model(collection,schema);

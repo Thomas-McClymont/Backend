@@ -1,0 +1,37 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Obtiene el carrito
+      tags: 
+        - Carts
+      responses:
+        "200":
+          description: La operacion fue exitosa! Se retorna el cart.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#components/schemas/Cart'
+        "400": 
+          description: Se envió un dato no esperado.
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+components:
+  schemas:
+    Cart: 
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Id autogenerado de MongoDB.
+        products: 
+          type: String
+          description: Productos agregados
+        total:
+          type: Number
+          description: Monto total
+      example: 
+        _id: ObjectId("647fa8c9e46dbc5a20320181")
+        products: Usuario de prueba 1
+        total: 1500
