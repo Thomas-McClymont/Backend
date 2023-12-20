@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const collection = 'Users';
+const collection = 'Sessions';
 
 const schema = new mongoose.Schema({
     first_name:{
@@ -19,13 +19,9 @@ const schema = new mongoose.Schema({
     password:{
         type:String,
         required:true
-    },
-    role: {
-        type:String,
-        default:'user'
     }
 })
 
-const userModel = mongoose.model(collection,schema);
+const sessionModel = mongoose.model(collection,schema);
 
-export default userModel;
+export default sessionModel;

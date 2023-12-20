@@ -1,6 +1,6 @@
 import userModel from "./models/user.js";
 
-export default class Users {
+export default class Users {    
     get = (params) =>{
         return userModel.find(params);
     }

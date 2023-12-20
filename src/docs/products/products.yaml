@@ -1,0 +1,45 @@
+paths:
+  /api/products/:
+    get:
+      summary: Obtiene todos los productos disponibles en la aplicación.
+      tags: 
+        - Products
+      responses:
+        "200":
+          description: La operacion fue exitosa! Se retorna un arreglego con los productos.
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  $ref: '#components/schemas/Product'
+        "400": 
+          description: Se envió un dato no esperado.
+        "500":
+          description: Error inesperado en el servidor, no se pudo manejar el proceso.
+components:
+  schemas:
+    Product: 
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Id autogenerado de MongoDB.
+        product_name: 
+          type: String
+          description: Nombre del producto
+        price:
+          type: Number
+          description: Precio del producto
+        category:
+          type: String
+          description: Categoria del producto
+      example: 
+        _id: ObjectId("647fa8c9e46dbc5a20320181")
+        product_name: producto de prueba 1
+        price: 1500
+        category: Remera
+        subcategory: Oversize
+        added: false
+        color: White
+        size: 42
